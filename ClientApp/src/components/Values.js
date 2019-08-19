@@ -9,13 +9,18 @@ export class Values extends Component {
     this.state = { values: [], loading: true };
 
     fetch('api/Values/Get')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ values: data, loading: false });
+        .then(response => {
+            console.log("response from fetch", response);
+            response.json();
+        })
+        .then(data => {
+            if (data) {
+                 this.setState({ values: data, loading: false });
+            }
       });
   }
 
-  static rendeValueTable (values) {
+  static renderValueTable (values) {
     return (
       <table className='table table-striped'>
         <thead>

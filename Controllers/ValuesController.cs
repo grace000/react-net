@@ -11,11 +11,25 @@ namespace my_toy.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private static string[] Summaries = new[]
         {
-            return new string[] { "value1", "value2" };
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
+
+        // GET: api/values
+        [HttpGet("[action]")]
+        public IEnumerable<Value> Get()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => new Value
+            {
+                Summary = Summaries[rng.Next(Summaries.Length)]
+            });
+        }
+
+        public class Value
+        {
+            public string Summary { get; set; }
         }
 
         // GET api/values/5
