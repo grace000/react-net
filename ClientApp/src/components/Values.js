@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 export class Values extends Component {
-  static displayName = FetchData.name;
+  static displayName = Values.name;
 
   constructor (props) {
     super(props);
@@ -37,7 +37,7 @@ export class Values extends Component {
   render () {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : FetchData.renderValueTable(this.state.values);
+      : Values.renderValueTable(this.state.values);
 
     return (
       <div>
